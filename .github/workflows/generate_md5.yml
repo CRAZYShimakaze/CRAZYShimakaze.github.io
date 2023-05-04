@@ -1,15 +1,13 @@
-name: Generate poetry.lock
+name: generate_md5
 
 on:
   push:
     branches:
       - "main"
-    paths:
-      - 'pyproject.toml'
 
 jobs:
-  poetry_lock:
-    name: Generate
+  generate:
+    name: generate
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -18,19 +16,16 @@ jobs:
         uses: he0119/setup-python@main
         with:
           python-version: "3.9"
-      - name: poetry lock
+      - name: md5
         run: |
-          rm -f poetry.lock
-          sed -i.bak "8,11d" pyproject.toml
-          poetry lock
-          mv pyproject.toml.bak pyproject.toml
+          python cal_md5.py
       # commit
       - name: commit file
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
-          git add poetry.lock
-          git commit -m "Auto generate poetry.lock" -a
+          git add cal_md5.py
+          git commit -m "Auto generate md5" -a
       # push 
       - name: push changes
         uses: ad-m/github-push-action@master
