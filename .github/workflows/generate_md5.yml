@@ -18,6 +18,11 @@ jobs:
           python-version: "3.9"
       - name: md5
         run: |
+          ls
+          cd ..
+          ls 
+          cd ..
+          ls 
           cd ..
           ls 
       # commit
