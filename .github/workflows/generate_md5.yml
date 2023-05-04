@@ -18,7 +18,7 @@ jobs:
           python-version: "3.9"
       - name: md5
         run: |
-          python cal_md5.py
+          python ../cal_md5.py
       # commit
       - name: commit file
         run: |
