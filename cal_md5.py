@@ -15,13 +15,11 @@ def get_hash(path):
     json.dump(hash_list, path_.open('w', encoding='utf-8'), ensure_ascii=False, indent=4)
 
 
-get_hash('genshin/common_guide')
-get_hash('genshin/role_info')
-get_hash('genshin/role_break')
-get_hash('genshin/role_guide')
-get_hash('genshin/weapon_info')
-# get_hash('starrail/common_guide')
-# get_hash('starrail/role_info')
-# get_hash('starrail/role_break')
-get_hash('starrail/role_guide')
-get_hash('starrail/weapon_info')
+genshin = os.listdir('genshin')
+for item in genshin:
+    if os.path.isdir('genshin/' + item):
+        get_hash('genshin/' + item)
+starrail = os.listdir('starrail')
+for item in starrail:
+    if os.path.isdir('starrail/' + item):
+        get_hash('starrail/' + item)
