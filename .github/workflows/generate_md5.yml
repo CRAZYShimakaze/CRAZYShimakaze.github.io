@@ -18,13 +18,13 @@ jobs:
           python-version: "3.9"
       - name: md5
         run: |
-          python ../cal_md5.py
+          cd ..
+          ls 
       # commit
       - name: commit file
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
-          git add cal_md5.py
           git commit -m "Auto generate md5" -a
       # push 
       - name: push changes
