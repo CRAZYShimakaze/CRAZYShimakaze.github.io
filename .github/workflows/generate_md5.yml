@@ -1,12 +1,13 @@
 name: generate_md5
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - "main"
     paths:
-      - genshin/*
-      - starrail/*
+      - genshin/**
+      - starrail/**
 
 jobs:
   generate:
