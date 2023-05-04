@@ -13,7 +13,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Set up Python
-        uses: he0119/setup-python@main
+        uses: actions/setup-python@v2
         with:
           python-version: "3.9"
       - name: md5
