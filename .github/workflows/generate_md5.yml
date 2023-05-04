@@ -4,6 +4,9 @@ on:
   push:
     branches:
       - "main"
+    paths:
+      - genshin/*
+      - starrail/*
 
 jobs:
   generate:
@@ -18,7 +21,7 @@ jobs:
           python-version: "3.9"
       - name: md5
         run: |
-          python cal_hash.py
+          python cal_md5.py
       # commit
       - name: commit file
         run: |
