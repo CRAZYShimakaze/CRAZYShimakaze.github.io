@@ -7,6 +7,7 @@ from pathlib import Path
 def get_hash(path):
     hash_list = {}
     data = os.listdir(path)
+    data.sort()
     for item in data:
         if item != 'md5.json':
             with open(f'{path}/{item}', 'rb') as img:
@@ -18,7 +19,9 @@ def get_hash(path):
 def get_alias(path, alias):
     if 'common_guide' in path:
         return
-    for item in os.listdir(path):
+    data = os.listdir(path)
+    data.sort()
+    for item in data:
         if 'json' in item:
             continue
         name = item.replace('.jpg', '').replace('.png', '')
