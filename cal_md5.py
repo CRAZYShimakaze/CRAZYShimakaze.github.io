@@ -9,7 +9,7 @@ def get_hash(path):
     data = os.listdir(path)
     data.sort()
     for item in data:
-        if item != 'md5.json':
+        if item != 'md5.json' and item != '.DS_Store':
             with open(f'{path}/{item}', 'rb') as img:
                 hash_list[item.replace('.jpg', '').replace('.png', '')] = hashlib.md5(img.read()).hexdigest()
     path_ = Path(f'{path}/md5.json')
