@@ -22,7 +22,7 @@ def get_alias(path, alias):
     data = os.listdir(path)
     data.sort()
     for item in data:
-        if 'json' in item:
+        if 'json' in item or '.DS_Store' in item:
             continue
         name = item.replace('.jpg', '').replace('.png', '')
         if name not in alias['角色'] and 'role' in path:
