@@ -1,0 +1,68 @@
+{
+  "repositories": [
+    {
+      "name": "genshin-atlas",
+      "url": "https://github.com/Nwflower/genshin-atlas.git",
+      "branch": "master",
+      "mappings": [
+        {
+          "source": "material for role",
+          "destination": "genshin/role_break"
+        }
+      ]
+    },
+    {
+      "name": "star-rail-atlas",
+      "url": "https://github.com/Nwflower/star-rail-atlas.git",
+      "branch": "master",
+      "mappings": [
+        {
+          "source": "guide for role",
+          "destination": "starrail/role_guide"
+        },
+        {
+          "source": "role",
+          "destination": "starrail/role_info"
+        },
+        {
+          "source": "lightcone",
+          "destination": "starrail/weapon_info"
+        }
+      ]
+    },
+    {
+      "name": "xiaoyao_plus",
+      "url": "https://github.com/ctrlcvs/xiaoyao_plus.git",
+      "branch": "main",
+      "mappings": [
+        {
+          "source": "juese_tujian",
+          "destination": "genshin/role_info"
+        },
+        {
+          "source": "wuqi_tujian",
+          "destination": "genshin/weapon_info"
+        }
+      ]
+    },
+    {
+      "name": "zzz-atlas",
+      "url": "https://github.com/Nwflower/zzz-atlas.git",
+      "branch": "master",
+      "mappings": [
+        {
+          "source": "material for role",
+          "destination": "zzz/role_break"
+        },
+        {
+          "source": "角色攻略",
+          "destination": "zzz/role_guide"
+        },
+        {
+          "source": "音擎",
+          "destination": "zzz/weapon_info"
+        }
+      ]
+    }
+  ]
+}

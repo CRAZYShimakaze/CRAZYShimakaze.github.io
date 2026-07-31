@@ -1,0 +1,55 @@
+name: Sync upstream atlases
+
+on:
+  workflow_dispatch:
+    inputs:
+      delete_missing:
+        description: Delete managed images that no longer exist upstream
+        required: false
+        type: boolean
+        default: false
+  schedule:
+    - cron: "23 20 * * *"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: sync-upstream-atlases
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out target repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Synchronize images
+        env:
+          DELETE_MISSING: ${{ inputs.delete_missing || 'false' }}
+        run: |
+          args=()
+          if [[ "$DELETE_MISSING" == "true" ]]; then
+            args+=(--delete)
+          fi
+          python scripts/sync_upstreams.py "${args[@]}"
+
+      - name: Commit synchronized files
+        run: |
+          git add genshin starrail zzz
+          if git diff --cached --quiet; then
+            echo "All managed files are already up to date."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "自动同步图鉴资源"
+          git push

@@ -8,6 +8,10 @@ on:
     paths:
       - genshin/**
       - starrail/**
+      - zzz/**
+
+permissions:
+  contents: write
 
 jobs:
   generate:
@@ -15,23 +19,22 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
       - name: Set up Python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v5
         with:
-          python-version: "3.9"
+          python-version: "3.12"
       - name: md5
         run: |
           python cal_md5.py
-      # commit
-      - name: commit file
+      - name: Commit metadata
         run: |
+          git add genshin starrail zzz
+          if git diff --cached --quiet; then
+            echo "Metadata is already up to date."
+            exit 0
+          fi
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
-          git add .
-          git commit -m "Auto generate md5" -a
-      # push 
-      - name: push changes
-        uses: ad-m/github-push-action@master
-        with:
-          github_token: ${{ secrets.SECRET_TOKEN }}
+          git commit -m "Auto generate md5"
+          git push

@@ -48,3 +48,8 @@ for item in starrail:
         # get_alias('starrail/' + item, alias)
         get_hash('starrail/' + item)
 # json.dump(alias, path_.open('w', encoding='utf-8'), ensure_ascii=False, indent=2)
+
+zzz = os.listdir('zzz')
+for item in zzz:
+    if os.path.isdir('zzz/' + item):
+        get_hash('zzz/' + item)
